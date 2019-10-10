@@ -1,0 +1,16 @@
+<div class="container productos-card" *ngIf="!sinResultados">
+  <div class="row">
+    <div class="card-columns">
+      <a *ngFor="let producto of Productos" routerLink="/detalle-producto/{{ producto.titulo | lowercase | wordToSlug }}" class="fade-in">
+        <div class="card">
+          <div class="card-body">
+            <img src="{{ producto.imagen }}" alt="Imagen de {{ producto.titulo }}" class="img-fluid">
+            <h5 class="card-title elipsis-titulo"><fa-icon [icon]="['fas', 'shopping-basket']"></fa-icon> {{ producto.titulo | uppercase }}</h5>
+            <span class="badge badge-success categoria elipsis-categoria">{{ producto.categoria }}</span>
+            <p class="card-text">#{{ producto.id }} de producto</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

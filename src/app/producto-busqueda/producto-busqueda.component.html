@@ -1,0 +1,46 @@
+<div class="container fade-in">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <input [ngModel]="termino | slugToWord" 
+                                   (ngModelChange)="termino = $event" name="termino" type="text" class="form-control" id="busqueda" aria-describedby="busquedaHelp" placeholder="Busca aquí 🧐" autocomplete="off" 
+                                   (keyup.enter)="buscarProductos()"
+                                   >
+                            <div class="input-group-append boton-busqueda" 
+                                 (click)="buscarProductos()">
+                                <span class="input-group-text">
+                                    Buscar
+                                    <fa-icon [icon]="['fas', 'search']"></fa-icon>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="busquedaInicial">
+    <div class="row">
+        <div class="col-md-12 text-center fade-in fast">
+            <div class="card border-success mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">Busca tus productos aqui</h4>
+                    <div class="fa-5x">
+                        <fa-icon [icon]="['fas', 'search']"></fa-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-productos-card [productos-param]="Productos" 
+                    [hayError]="hayError" 
+                    [sinResultados]="sinResultados"></app-productos-card>
+<app-loader [loader-param]="loader" 
+            [hayError]="hayError" 
+            [errorMensaje]="errorMensaje" 
+            [sinResultados]="sinResultados"></app-loader>

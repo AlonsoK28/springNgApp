@@ -1,0 +1,21 @@
+.control{
+    margin-right: 45px;
+}
+
+.producto{
+    padding-bottom: 4rem;
+}
+
+.elipsis-titulo{
+    max-width: 900px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.elipsis-categoria{
+    max-width: 340px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

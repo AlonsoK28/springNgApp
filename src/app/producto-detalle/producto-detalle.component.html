@@ -1,0 +1,44 @@
+<div class="container producto">
+    <div class="row">
+        <div class="col-md-12 fade-in" *ngIf="producto">
+            <div class="jumbotron">
+                <form [formGroup]="formulario" (ngSubmit)="updateProducto()">
+                    <fieldset>
+                        <h2><strong>DETALLE </strong> Detalle del producto</h2>
+                        <div class="alert alert-dismissible alert-primary">
+                            <h1 class="display-4 nombre elipsis-titulo"><fa-icon [icon]="['fas', 'paperclip']"></fa-icon> {{ producto.titulo | uppercase }}</h1>
+                        </div>
+                        <span class="badge badge-success categoria"><h4 class="elipsis-categoria"><fa-icon [icon]="['fas', 'info-circle']"></fa-icon> Categoría {{ producto.categoria }}</h4></span>
+                        <hr class="my-2">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off"
+                                   aria-describedby="nombre" placeholder="Nombre"
+                                   formControlName="tituloProducto" value="{{ producto.titulo | lowercase }}">
+                            <div *ngIf="formulario.controls['tituloProducto'].errors?.required && formulario.controls['tituloProducto'].touched" class="">El título del producto es requerido</div>
+                            <div *ngIf="formulario.controls['tituloProducto'].errors?.minlength" class="">Debe ingresar al menos {{ formulario.controls['tituloProducto'].errors?.minlength?.requiredLength }} carateres</div>
+                            <div *ngIf="formulario.controls['tituloProducto'].errors?.maxlength" class="">Puedes ingresar un máximo de {{ formulario.controls['tituloProducto'].errors?.maxlength?.requiredLength }} carateres</div>
+                            <div *ngIf="formulario.controls['tituloProducto'].errors?.pattern?.requiredPattern == '^[a-zA-Z ]*$'" class="">No es valido el ingreso de "caracteres especiales" o números en el Título del producto</div>
+                        </div>
+                        <div class="col col-md-12 p-1">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-info regresar control" (click)="goBack()">
+                                    <fa-icon [icon]="['fas', 'arrow-circle-left']"></fa-icon>
+                                    Regresar
+                                </button>
+                                <button type="submit" class="btn btn-success regresar control">
+                                        <fa-icon [icon]="['fas', 'check-circle']"></fa-icon>
+                                    Guardar
+                                </button>
+                                <button type="button" class="btn btn-danger regresar control" (click)="deleteProductoPorId(producto.id)">
+                                    <fa-icon [icon]="['fas', 'times']"></fa-icon>
+                                    Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loader [loader-param]="loader" [hayError]="hayError" [errorMensaje]="errorMensaje" [sinResultados]="sinResultados"></app-loader>

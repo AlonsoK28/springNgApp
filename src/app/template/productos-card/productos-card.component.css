@@ -1,0 +1,32 @@
+h5{
+    color: white;
+    font-size: 2em;
+    font-weight: 600
+}
+
+img{
+    padding-bottom: 1.25em;
+}
+
+.categoria{
+    font-size: 1em;
+}
+
+.mensaje{
+    color: white;
+    font-weight: 500;
+}
+
+.productos-card{
+    padding-bottom: 5rem;
+}
+
+.elipsis-titulo{
+    max-width: 340px;
+}
+.elipsis-categoria{
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

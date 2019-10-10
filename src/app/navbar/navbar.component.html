@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+      <h2>
+          <fa-icon [icon]="['fab', 'angular']"></fa-icon> ng-app
+      </h2>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+    aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <!-- <a class="nav-link"
+           routerLink="/alumnos">Alumnos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" 
+           routerLink="/tablero">Tablero</a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" 
+           routerLink="/listado-productos">
+            <h4>
+                <fa-icon [icon]="['fas', 'asterisk']"></fa-icon> Todos los productos
+            </h4>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" 
+           routerLink="/agregar-producto">
+            <h4>
+              <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon> <strong> Agregar producto</strong>
+            </h4>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" 
+           routerLink="/busqueda">
+            <h4>
+              <fa-icon [icon]="['fas', 'search']"></fa-icon> <strong> Búsqueda</strong>
+            </h4>
+        </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0"
+          (ngSubmit)="buscarProductos(buscarInput.value)">
+      <input class="form-control mr-sm-2" type="text" placeholder="Busca productos aquí" 
+             #buscarInput>
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Buscar
+      </button>
+    </form>
+  </div>
+</nav>

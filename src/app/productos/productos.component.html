@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <h2><strong>LISTADO </strong> Listado de productos</h2>
+    </div>
+</div>
+<app-productos-card [productos-param]="Productos" 
+                    [hayError]="hayError" 
+                    [sinResultados]="sinResultados"></app-productos-card>
+<app-loader [loader-param]="loader" 
+            [hayError]="hayError" 
+            [errorMensaje]="errorMensaje" 
+            [sinResultados]="sinResultados"></app-loader>

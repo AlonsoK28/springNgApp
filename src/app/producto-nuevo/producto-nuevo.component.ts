@@ -47,6 +47,8 @@ export class ProductoNuevoComponent implements OnInit {
       this.productosRestApiService.createProducto(this.productoAgregar)
         .subscribe(producto => {
           this.router.navigate(['/listado-productos']);
+        }, (err)=>{
+            alert(err);
         });
     }else{
       // $event.preventDefault(); //previnir submit por defecto

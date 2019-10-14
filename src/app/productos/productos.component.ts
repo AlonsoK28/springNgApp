@@ -24,7 +24,6 @@ export class ProductosComponent implements OnInit {
                 .getListadoProductos()
                     .subscribe((data:Producto[]) =>{
                         this.Productos = data;
-                        console.log("Productos producto component: ", JSON.stringify(this.Productos));
                         //sin resultados
                         this.loader = false;
                         if (this.Productos.length === 0) {

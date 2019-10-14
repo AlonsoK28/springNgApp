@@ -18,6 +18,8 @@ export class ProductoDetalleComponent implements OnInit {
   loader: boolean = true;
   httpErrorCode: number;
   httpErrorMessage: string;
+  tituloProductoControl: any;
+  caracteresEspecialesPattern = new RegExp(/^[A-z0-9 _]*$/);
   constructor(  private route: ActivatedRoute,
                 private productosRestApiService: ProductosRestApiService,
                 private location: Location,
@@ -40,14 +42,9 @@ export class ProductoDetalleComponent implements OnInit {
             this.formulario = new FormGroup({
               "tituloProducto": new FormControl(
                 this.producto.titulo,
-                [
-                  Validators.required,
-                  Validators.minLength(5),
-                  Validators.maxLength(50),
-                  Validators.pattern('[a-zA-Z ]*')
-                ]
-              )
+                [ Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern(this.caracteresEspecialesPattern) ])
             });
+            this.tituloProductoControl = this.formulario.controls.tituloProducto;
           },
           (err: httpError) => {
             this.loader = false;

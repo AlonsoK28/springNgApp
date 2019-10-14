@@ -4,6 +4,7 @@ import { Producto, ProductoNuevo, ProductoAgregar } from "../producto"
 import { ProductosRestApiService } from "../services/productos-rest-api.service"
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { httpError } from '../httpError';
 
 @Component({
   selector: 'app-producto-nuevo',
@@ -18,14 +19,13 @@ export class ProductoNuevoComponent implements OnInit {
   formulario: FormGroup;
   tituloProductoControl: any;
   categoriaProductoControl: any;
-  caracteresEspecialesPattern: any;
+  caracteresEspecialesPattern = new RegExp(/^[A-z0-9 _]*$/);
   constructor(  private productosRestApiService: ProductosRestApiService,
                 private location: Location,
                 private router: Router ) {
 
-  const caracteresEspecialesPattern = '[A-Za-z0-9]';
   this.formulario = new FormGroup({
-    "tituloProducto": new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(20), Validators.pattern(this.caracteresEspecialesPattern) ]),
+    "tituloProducto": new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(20), Validators.pattern(this.caracteresEspecialesPattern) ]),
     "categoriaProducto": new FormControl('', [ Validators.required, Validators.minLength(5), Validators.maxLength(50), Validators.pattern(this.caracteresEspecialesPattern) ])
   });
 
@@ -47,8 +47,8 @@ export class ProductoNuevoComponent implements OnInit {
       this.productosRestApiService.createProducto(this.productoAgregar)
         .subscribe(producto => {
           this.router.navigate(['/listado-productos']);
-        }, (err)=>{
-            alert(err);
+        }, (err: httpError)=>{
+          // alert(err.httpErrorMessage);
         });
     }else{
       // $event.preventDefault(); //previnir submit por defecto
@@ -57,8 +57,6 @@ export class ProductoNuevoComponent implements OnInit {
   }
 
   resetForm() {
-    // console.log(this.tituloProductoControl);
-    // console.log(this.categoriaProductoControl.status);
     this.formulario.reset();
   }
 }

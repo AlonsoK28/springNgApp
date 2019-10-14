@@ -9,20 +9,24 @@
           <h3><fa-icon [icon]="['fas', 'font']"></fa-icon> Titulo</h3>
           <div class="form-group">
             <input type="text" class="form-control" id="tituloProducto" name="tituloProducto" placeholder="Titulo del producto" autocomplete="off" 
-                   formControlName="tituloProducto">
-            <div *ngIf="tituloProductoControl.errors?.required && tituloProductoControl.touched" class="">El título del producto es requerido</div>
-            <div *ngIf="tituloProductoControl.errors?.minlength" class="">Debe ingresar al menos {{ tituloProductoControl.errors?.minlength?.requiredLength }} carateres</div>
-            <div *ngIf="tituloProductoControl.errors?.maxlength" class="">Puedes ingresar un máximo de {{ tituloProductoControl.errors?.maxlength?.requiredLength }} carateres</div>
-            <div *ngIf="tituloProductoControl.errors?.pattern?.requiredPattern == '^{regExpCaracteresEspeciales}$'" class="">No es valido el ingreso de "caracteres especiales" en el Título del producto</div>
+                   formControlName="tituloProducto"
+                   [ngClass]="{ 'is-valid' : tituloProductoControl.status === 'VALID',
+                                'is-invalid' : tituloProductoControl.touched && tituloProductoControl.status === 'INVALID' }">
+            <div *ngIf="tituloProductoControl.errors?.required && tituloProductoControl.touched" class="invalid-feedback">El título del producto es requerido</div>
+            <div *ngIf="tituloProductoControl.errors?.minlength" class="invalid-feedback">Debe ingresar al menos {{ tituloProductoControl.errors?.minlength?.requiredLength }} carateres</div>
+            <div *ngIf="tituloProductoControl.errors?.maxlength" class="invalid-feedback">Puedes ingresar un máximo de {{ tituloProductoControl.errors?.maxlength?.requiredLength }} carateres</div>
+            <div *ngIf="tituloProductoControl.errors?.pattern?.requiredPattern" class="invalid-feedback">No es valido el ingreso de "caracteres especiales" en el Título del producto</div>
           </div>
           <h3><fa-icon [icon]="['fas', 'info-circle']"></fa-icon> Categoría</h3>
           <div class="form-group">
             <input type="text" class="form-control" id="categoriaProducto" name="categoriaProducto" placeholder="Categoría del producto" autocomplete="off"
-                   formControlName="categoriaProducto">
-            <div *ngIf="categoriaProductoControl.errors?.required && categoriaProductoControl.touched" class="">La categoría del producto es requerida</div>
-            <div *ngIf="categoriaProductoControl.errors?.minlength" class="">Debe ingresar al menos {{ categoriaProductoControl.errors.minlength.requiredLength }} carateres</div>
-            <div *ngIf="categoriaProductoControl.errors?.maxlength" class="">Puedes ingresar un máximo de {{ categoriaProductoControl.errors.maxlength.requiredLength }} carateres</div>
-            <div *ngIf="categoriaProductoControl.errors?.pattern?.requiredPattern == '^{regExpCaracteresEspeciales}$'" class="">No es valido el ingreso de "caracteres especiales" en la Categoría del producto</div>
+                   formControlName="categoriaProducto"
+                   [ngClass]="{ 'is-valid' : categoriaProductoControl.status === 'VALID',
+                                'is-invalid' : categoriaProductoControl.touched && categoriaProductoControl.status === 'INVALID' }">
+            <div *ngIf="categoriaProductoControl.errors?.required && categoriaProductoControl.touched" class="invalid-feedback">La categoría del producto es requerida</div>
+            <div *ngIf="categoriaProductoControl.errors?.minlength" class="invalid-feedback">Debe ingresar al menos {{ categoriaProductoControl.errors.minlength.requiredLength }} carateres</div>
+            <div *ngIf="categoriaProductoControl.errors?.maxlength" class="invalid-feedback">Puedes ingresar un máximo de {{ categoriaProductoControl.errors.maxlength.requiredLength }} carateres</div>
+            <div *ngIf="categoriaProductoControl.errors?.pattern?.requiredPattern" class="invalid-feedback">No es valido el ingreso de "caracteres especiales" en la Categoría del producto</div>
           </div>
           <div class="col col-md-12 p-1">
             <div class="form-group">

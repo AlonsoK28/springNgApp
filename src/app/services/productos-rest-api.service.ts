@@ -26,6 +26,7 @@ export class ProductosRestApiService {
       return this.http
                  .get<Producto[]>(`${this.apiURL}/articles/`)
                  .pipe( map((productos: Producto[]) => productos.map(producto => new Producto(producto))), 
+                        retry(1),
                         catchError(this.handleError))
   }
   
@@ -33,34 +34,35 @@ export class ProductosRestApiService {
   getProductoPorId(id: Number): Observable <Producto> {
       return this.http
                  .get<Producto>(`${this.apiURL}/article/${id}`)
-                 .pipe(map((producto: Producto) => new Producto(producto)), catchError(this.handleError))
+                 .pipe( map((producto: Producto) => new Producto(producto) ), 
+                        retry(1),
+                        catchError(this.handleError) )
   }
   // HttpClient API get() method => Obtiene un producto por slug (slug generado a partir del titulo de producto)
   getProductoPorSlug(slug: string): Observable <Producto> {
       return this.http
                  .get<Producto>(`${this.apiURL}/articleTitle/${slug}`)
-                 .pipe(map((producto: Producto) => new Producto(producto)), catchError(this.handleError))
+                 .pipe( map((producto: Producto) => new Producto(producto)),
+                        retry(1), 
+                        catchError(this.handleError))
   }
 
   // HttpClient API delete() method => Eliminar producto por Id
   deleteProductoPorId(id: Number) {
     return this.http.delete<Producto>(`${this.apiURL}/article/${id}`, this.httpOptions)
-               .pipe( retry(1), 
-                      catchError(this.handleError))
+               .pipe( catchError(this.handleError) )
   }
 
   // HttpClient API update() method => Actualizar por Id
   updateProductoPorId(productoNuevo:ProductoNuevo): Observable<ProductoNuevo> {
     return this.http.put<ProductoNuevo>(`${this.apiURL}/article/`, JSON.stringify(productoNuevo), this.httpOptions)
-               .pipe( retry(1), 
-                      catchError(this.handleError))
+               .pipe( catchError(this.handleError) )
   }
   
   // HttpClient API insert() method => Insertar por Id
   createProducto(productoNuevo: ProductoAgregar) {
     return this.http.post<Producto>(this.apiURL + '/article/', JSON.stringify(productoNuevo), this.httpOptions)
-               .pipe( retry(1), 
-                      catchError(this.handleError))
+               .pipe( catchError(this.handleError) )
   }
 
   // HttpClient API get() method => Obtiene todos los productos
@@ -68,12 +70,12 @@ export class ProductosRestApiService {
     return this.http
                .get<Producto[]>(`${this.apiURL}/articleTitleSearch/${termino}`)
                .pipe( map((productos: Producto[]) => productos.map(producto => new Producto(producto))), 
+                      retry(1),
                       catchError(this.handleError))
   }
 
   // Error handling 
   handleError(error) {
-    console.log(error);
     switch (error.status) {
       case httpErrorCode[0].code:  
         this.httpE = {
@@ -92,6 +94,12 @@ export class ProductosRestApiService {
         this.httpE = {
           httpStatusCode: httpErrorCode[404].code,
           httpErrorMessage: httpErrorCode[404].message
+        };
+        break;
+      case httpErrorCode[409].code:
+        this.httpE = {
+          httpStatusCode: httpErrorCode[409].code,
+          httpErrorMessage: httpErrorCode[409].message
         };
         break;
     }

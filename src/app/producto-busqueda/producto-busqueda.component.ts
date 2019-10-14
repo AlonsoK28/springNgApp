@@ -3,6 +3,7 @@ import { ProductosRestApiService } from '../services/productos-rest-api.service'
 import { Producto } from '../producto';
 import { ActivatedRoute } from '@angular/router';
 import { SlugToWordPipe } from "../pipes/slug-to-word.pipe";
+import { httpError } from '../httpError';
 
 
 @Component({
@@ -12,12 +13,12 @@ import { SlugToWordPipe } from "../pipes/slug-to-word.pipe";
 })
 export class ProductoBusquedaComponent implements OnInit {
   Productos: Producto[];
-  loader: boolean;
   sinResultados: boolean;
-  hayError: boolean;
   busquedaInicial: boolean = true;
-  errorMensaje: any;
   termino: string = ""; 
+  loader: boolean;
+  httpErrorCode:number;
+  httpErrorMessage:string;
 
   constructor(private productosRestApi: ProductosRestApiService,
               private route: ActivatedRoute) { 
@@ -41,7 +42,6 @@ export class ProductoBusquedaComponent implements OnInit {
     }
     this.busquedaInicial = false;
     this.loader = true;
-    this.hayError = false;
     this.getListadoProductosBusqueda();  
   }
 
@@ -52,15 +52,15 @@ export class ProductoBusquedaComponent implements OnInit {
                .subscribe((data: Producto[]) => {
                   this.Productos = data;
                   //sin resultados
+                  this.loader = false;
                   if (this.Productos.length === 0) {
-                    this.loader = false;
                     this.sinResultados = true;
                     return;
                   }
-                  this.loader = false;
-               }, (err) => {
-                 this.hayError = true;
-                 this.errorMensaje = err;
+               }, (err: httpError) => {
+                   this.loader = false;
+                   this.httpErrorCode = err.httpStatusCode;
+                   this.httpErrorMessage = err.httpErrorMessage;
                });
   }
 

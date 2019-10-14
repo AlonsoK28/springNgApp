@@ -37,10 +37,9 @@
         </div>
     </div>
 </div>
-<app-productos-card [productos-param]="Productos" 
-                    [hayError]="hayError" 
-                    [sinResultados]="sinResultados"></app-productos-card>
+<app-productos-card [productos-param]="Productos"></app-productos-card>
+                    
 <app-loader [loader-param]="loader" 
-            [hayError]="hayError" 
-            [errorMensaje]="errorMensaje" 
+            [httpErrorCode]="httpErrorCode" 
+            [httpErrorMessage]="httpErrorMessage" 
             [sinResultados]="sinResultados"></app-loader>

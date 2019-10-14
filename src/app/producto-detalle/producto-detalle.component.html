@@ -25,7 +25,8 @@
                                     <fa-icon [icon]="['fas', 'arrow-circle-left']"></fa-icon>
                                     Regresar
                                 </button>
-                                <button type="submit" class="btn btn-success regresar control">
+                                <button type="submit" class="btn btn-success regresar control"
+                                        [disabled]="formulario.invalid">
                                         <fa-icon [icon]="['fas', 'check-circle']"></fa-icon>
                                     Guardar
                                 </button>
@@ -41,4 +42,6 @@
         </div>
     </div>
 </div>
-<app-loader [loader-param]="loader" [hayError]="hayError" [errorMensaje]="errorMensaje" [sinResultados]="sinResultados"></app-loader>
+<app-loader [loader-param]="loader" 
+            [httpErrorMessage]="httpErrorMessage"
+            [httpErrorCode]="httpErrorCode"></app-loader>

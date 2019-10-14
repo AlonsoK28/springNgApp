@@ -34,7 +34,9 @@ import { fas,
   faBackspace, 
   faFont, 
   faPaperclip,
-  faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+  faShoppingBasket,
+  faStarHalfAlt, 
+  faStarHalf} from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab, faAngular } from '@fortawesome/free-brands-svg-icons';
 
@@ -79,6 +81,7 @@ export class AppModule {
       faCheckCircle, 
       faFont,
       faPaperclip,
-      faShoppingBasket);  
+      faShoppingBasket,
+      faStarHalfAlt );  
   }
 }

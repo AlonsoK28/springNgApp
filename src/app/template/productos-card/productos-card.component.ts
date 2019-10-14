@@ -9,12 +9,11 @@ import { Producto } from 'src/app/producto';
 export class ProductosCardComponent implements OnInit {
 
   @Input("productos-param") Productos: Producto;
-  @Input("sinResultados") sinResultados:boolean;
-  @Input("hayError") hayError:boolean;
 
   constructor() { }
 
   ngOnInit() {
+    // console.log("Productos loader component: ", JSON.stringify(this.Productos));
   }
 
 }

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Producto, ProductoNuevo, ProductoAgregar } from '../producto';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError, map } from 'rxjs/operators';
+import { httpErrorCode, httpError } from '../httpError';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,8 @@ export class ProductosRestApiService {
   apiHOST = `172.19.78.157`;
   apiPORT = "8888";
   apiURL = `//${this.apiHOST}:${this.apiPORT}/user`;
-  Producto:Producto;
+  Producto: Producto;
+  httpE: httpError;
   constructor(private http: HttpClient) { }
   // Http Options
   httpOptions = {
@@ -71,13 +73,26 @@ export class ProductosRestApiService {
 
   // Error handling 
   handleError(error) {
-    let errorMessage = '';
+    console.log(error);
     switch (error.status) {
-      case 0:
-        errorMessage = `No hay conexión con el proveedor del servicio`
+      case httpErrorCode[0].code:  
+        this.httpE = {
+          httpStatusCode: httpErrorCode[0].code,
+          httpErrorMessage: httpErrorCode[0].message
+        };
         break;
-      case 500:
-        errorMessage = `Error interno del servidor`
+        return 
+      case httpErrorCode[500].code:
+        this.httpE = {
+          httpStatusCode: httpErrorCode[500].code,
+          httpErrorMessage: httpErrorCode[404].message
+        };
+        break;
+      case httpErrorCode[404].code:
+        this.httpE = {
+          httpStatusCode: httpErrorCode[404].code,
+          httpErrorMessage: httpErrorCode[404].message
+        };
         break;
     }
     // if (error.error instanceof ErrorEvent) {
@@ -88,6 +103,6 @@ export class ProductosRestApiService {
     //   // Get server-side error
     //   // errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     // }
-    return throwError(errorMessage);
+    return throwError(this.httpE);
   }
 }

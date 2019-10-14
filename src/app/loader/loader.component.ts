@@ -8,15 +8,18 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LoaderComponent implements OnInit {
 
   @Input("loader-param") loader:boolean;
-  @Input("hayError") hayError:boolean;
-  @Input("errorMensaje") errorMensaje:boolean;
   @Input("sinResultados") sinResultados:boolean;
+  //http status code errors
+  @Input("httpErrorCode") httpErrorCode:number;
+  @Input("httpErrorMessage") httpErrorMessage:string;
 
-  constructor() { }
+  constructor() { 
+
+  }
 
   ngOnInit() {
-
-    // console.log(this.loader);
+    // console.log("loader: ", this.loader);
+    // console.log("sinResultados: ", this.sinResultados);
   }
 
 }

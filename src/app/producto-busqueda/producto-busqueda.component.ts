@@ -42,6 +42,7 @@ export class ProductoBusquedaComponent implements OnInit {
     }
     this.busquedaInicial = false;
     this.loader = true;
+    this.sinResultados = false;
     this.getListadoProductosBusqueda();  
   }
 

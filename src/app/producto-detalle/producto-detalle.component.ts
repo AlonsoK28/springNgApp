@@ -65,7 +65,7 @@ export class ProductoDetalleComponent implements OnInit {
   updateProducto() {
     if (this.formulario.valid) {
       if (window.confirm('Are you sure, you want to update?')) {
-          this.producto.titulo = this.formulario.controls["tituloProducto"].value;
+          this.producto.titulo = this.tituloProductoControl.value;
           this.productosRestApiService.updateProductoPorId(new ProductoNuevo(this.producto))
               .subscribe(data => {
                   this.router.navigate(['/listado-productos']);

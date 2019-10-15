@@ -41,7 +41,7 @@ export class ProductoNuevoComponent implements OnInit {
     this.location.back();
   }
 
-  createProducto($event) {
+  createProducto() {
     if (this.formulario.valid){
       this.productoAgregar = new ProductoAgregar(this.formulario.get("tituloProducto").value, this.formulario.get("categoriaProducto").value);
       this.productosRestApiService.createProducto(this.productoAgregar)

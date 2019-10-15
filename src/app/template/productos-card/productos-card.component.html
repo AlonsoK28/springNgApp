@@ -1,4 +1,4 @@
-<div class="container productos-card" *ngIf="Productos.length > 0">
+<div class="container productos-card" *ngIf="arrayIsValid(Productos) && Productos.length > 0">
   <div class="row">
     <div class="card-columns">
       <a *ngFor="let producto of Productos" routerLink="/detalle-producto/{{ producto.titulo | lowercase | wordToSlug }}" class="fade-in">

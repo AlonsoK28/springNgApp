@@ -16,4 +16,12 @@ export class ProductosCardComponent implements OnInit {
     // console.log("Productos loader component: ", JSON.stringify(this.Productos));
   }
 
+  // Validate if an array is empty
+  arrayIsValid(array){
+    if(typeof array !== 'undefined'){
+      return true;
+    }
+    return false;
+  }
+
 }

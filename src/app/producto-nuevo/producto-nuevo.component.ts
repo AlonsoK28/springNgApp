@@ -48,7 +48,7 @@ export class ProductoNuevoComponent implements OnInit {
         .subscribe(producto => {
           this.router.navigate(['/listado-productos']);
         }, (err: httpError)=>{
-          // alert(err.httpErrorMessage);
+          alert(err.httpErrorMessage);
         });
     }else{
       // $event.preventDefault(); //previnir submit por defecto

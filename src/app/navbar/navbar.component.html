@@ -48,7 +48,8 @@
           (ngSubmit)="buscarProductos(buscarInput.value)">
       <input class="form-control mr-sm-2" type="text" placeholder="Busca productos aquí" 
              #buscarInput>
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Buscar
+      <button class="btn btn-secondary my-2 my-sm-0" type="button"
+              (click)="buscarProductos(buscarInput.value)"><i class="fas fa-search"></i> Buscar
       </button>
     </form>
   </div>

@@ -1,3 +1,7 @@
 .boton-busqueda{
     cursor: pointer;
 }
+
+.icon-search{
+    padding-left: 5px;
+}

@@ -1,27 +1,20 @@
 # spring-ng-app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
+## This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.
+## Has as mission represent the management of diferent type of products
+## The service layers is provided for an API REST Spring Framework service based
 
-## Development server
+# techniques and paradigms used
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## ng-form
+### Used to validate using ractive data forms the user Inputs to send to service, also reg exp are used to prevent user input special chars that can broke slug's products
 
-## Code scaffolding
+## ng-model
+### For validate data IO for user interaction
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## ng-service
+### Also this app consumes a API REST Spring Framework service
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Contributors
+## Ing. C Alonso C Ortega [@AlonsoK28](https://github.com/AlonsoK28)
+## Mtro. en Admon. Miguel Canche

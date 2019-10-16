@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosRestApiService } from '../services/productos-rest-api.service';
-import { Producto } from '../producto';
 import { ActivatedRoute } from '@angular/router';
 import { SlugToWordPipe } from "../pipes/slug-to-word.pipe";
 import { httpError } from '../httpError';
+import { ProductApp } from '../models/product';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { httpError } from '../httpError';
   styleUrls: ['./producto-busqueda.component.css']
 })
 export class ProductoBusquedaComponent implements OnInit {
-  Productos: Producto[];
+  Productos: ProductApp[] = [];
   sinResultados: boolean;
   busquedaInicial: boolean = true;
   termino: string = ""; 
@@ -50,7 +50,7 @@ export class ProductoBusquedaComponent implements OnInit {
     let slugToWord = new SlugToWordPipe();
     return this.productosRestApi
       .getListadoProductosBusqueda(slugToWord.transform(this.termino))
-               .subscribe((data: Producto[]) => {
+               .subscribe((data:ProductApp[]) => {
                   this.Productos = data;
                   //sin resultados
                   this.loader = false;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosRestApiService } from "../services/productos-rest-api.service";
-import { Producto } from "../producto";
+import { ProductApp } from "../models/product";
 import { httpError } from '../httpError';
 @Component({
     selector: 'app-productos',
@@ -9,7 +9,7 @@ import { httpError } from '../httpError';
 })
 export class ProductosComponent implements OnInit {
     sinResultados: boolean = false;
-    Productos: any = [];
+    Productos: ProductApp[] = [];
     loader: boolean = true;
     httpErrorCode: number;
     httpErrorMessage: string;
@@ -20,9 +20,8 @@ export class ProductosComponent implements OnInit {
     }
 
     getListadoProductos(){
-      return this.productosRestApi
-                .getListadoProductos()
-                    .subscribe((data:Producto[]) =>{
+      return this.productosRestApi.getListadoProductos()
+                    .subscribe(data =>{
                         this.Productos = data;
                         //sin resultados
                         this.loader = false;

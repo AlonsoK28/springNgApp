@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Location } from '@angular/common';
-import { Producto, ProductoNuevo } from "../producto"
 import { ProductosRestApiService } from "../services/productos-rest-api.service";
 import { Router } from '@angular/router';
 import { SlugToWordPipe } from '../pipes/slug-to-word.pipe';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { httpErrorCode, httpError } from '../httpError';
+import { ProductApp, ProductAPI } from '../models/product';
 @Component({
   selector: 'app-producto-detalle',
   templateUrl: './producto-detalle.component.html',
   styleUrls: ['./producto-detalle.component.css']
 })
 export class ProductoDetalleComponent implements OnInit {
-  producto: Producto;
+  producto: ProductApp;
   formulario: FormGroup;
   loader: boolean = true;
   httpErrorCode: number;
@@ -36,7 +36,7 @@ export class ProductoDetalleComponent implements OnInit {
     let slugToWord = new SlugToWordPipe();
     this.route.params.subscribe(params => slug = params["slug"]);
     this.productosRestApiService.getProductoPorSlug(slugToWord.transform(slug))
-        .subscribe((producto) => {
+        .subscribe((producto:ProductApp) => {
             this.loader = false;
             this.producto = producto;
             this.formulario = new FormGroup({
@@ -53,7 +53,7 @@ export class ProductoDetalleComponent implements OnInit {
           });
   }
 
-  deleteProductoPorId(id:Number){
+  deleteProductoPorId(id:number){
     if (window.confirm('Are you sure, you want to delete?')) {
         this.productosRestApiService.deleteProductoPorId(id)
             .subscribe(data => {
@@ -66,7 +66,7 @@ export class ProductoDetalleComponent implements OnInit {
     if (this.formulario.valid) {
       if (window.confirm('Are you sure, you want to update?')) {
           this.producto.titulo = this.tituloProductoControl.value;
-          this.productosRestApiService.updateProductoPorId(new ProductoNuevo(this.producto))
+          this.productosRestApiService.updateProductoPorId(new ProductAPI(this.producto))
               .subscribe(data => {
                   this.router.navigate(['/listado-productos']);
           })

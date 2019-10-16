@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
-import { Producto, ProductoNuevo, ProductoAgregar } from "../producto"
 import { ProductosRestApiService } from "../services/productos-rest-api.service"
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { httpError } from '../httpError';
+import { ProductAPI, ProductApp } from '../models/product';
 
 @Component({
   selector: 'app-producto-nuevo',
@@ -13,9 +13,9 @@ import { httpError } from '../httpError';
 })
 export class ProductoNuevoComponent implements OnInit {
 
+  producto: ProductApp;
   tituloProducto:string;
   categoriaProducto:string;
-  productoAgregar:ProductoAgregar;
   formulario: FormGroup;
   tituloProductoControl: any;
   categoriaProductoControl: any;
@@ -43,8 +43,12 @@ export class ProductoNuevoComponent implements OnInit {
 
   createProducto() {
     if (this.formulario.valid){
-      this.productoAgregar = new ProductoAgregar(this.formulario.get("tituloProducto").value, this.formulario.get("categoriaProducto").value);
-      this.productosRestApiService.createProducto(this.productoAgregar)
+      let productoNuevo = {
+        title: this.formulario.get("tituloProducto").value,
+        category: this.formulario.get("categoriaProducto").value,
+      }
+      this.producto = new ProductApp(productoNuevo);
+      this.productosRestApiService.createProducto(new ProductAPI(this.producto))
         .subscribe(producto => {
           this.router.navigate(['/listado-productos']);
         }, (err: httpError)=>{

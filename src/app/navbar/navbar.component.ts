@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { WordToSlugPipe } from "../pipes/word-to-slug.pipe";
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { WordToSlugPipe } from "../pipes/word-to-slug.pipe";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor( private router: Router ) { }
+  constructor( @Inject(DOCUMENT) private _document, private router: Router ) { }
 
   ngOnInit() {
   }
@@ -21,4 +22,19 @@ export class NavbarComponent implements OnInit {
     let wordToSlug = new WordToSlugPipe();
     this.router.navigate([`busqueda/`, wordToSlug.transform(termino)]);
   }
+
+  switchTheme() {
+    const $theme = this._document.getElementById("theme");
+    const $switch = this._document.getElementById("customSwitch1");
+    const $label = this._document.getElementById("customSwitch1label");
+    const url = "assets/bootstrap";
+    if (!$switch.checked){
+      $label.innerHTML = "Switch tema Obscuro";
+      $theme.setAttribute("href", `${url}/clear-bootstrap.min.css`);
+    }else{
+      $label.innerHTML = "Switch tema Claro";
+      $theme.setAttribute("href", `${url}/dark-bootstrap.min.css`);
+    }
+  }
+
 }

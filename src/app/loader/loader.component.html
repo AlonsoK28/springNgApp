@@ -29,49 +29,51 @@
     </div>
 </div>
 <!-- error -->
-<div [ngSwitch]="httpErrorCode">
-    <div *ngSwitchCase="404">
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-md-12 text-center fade-in fast">
-                    <div class="card border-danger mb-3">
-                        <div class="card-body">
-                            <div class="fa-5x">
-                                <fa-icon [icon]="['fas', 'star-half-alt']"></fa-icon>
+<div *ngIf="!loader">
+    <div [ngSwitch]="httpErrorCode">
+        <div *ngSwitchCase="404">
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-12 text-center fade-in fast">
+                        <div class="card border-danger mb-3">
+                            <div class="card-body">
+                                <div class="fa-5x">
+                                    <fa-icon [icon]="['fas', 'star-half-alt']"></fa-icon>
+                                </div>
+                                <h4 class="card-title">{{ httpErrorMessage }}</h4>
                             </div>
-                            <h4 class="card-title">{{ httpErrorMessage }}</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div *ngSwitchCase="0">
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-md-12 text-center fade-in fast">
-                    <div class="card border-danger mb-3">
-                        <div class="card-body">
-                            <div class="fa-5x">
-                                <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+        <div *ngSwitchCase="0">
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-12 text-center fade-in fast">
+                        <div class="card border-danger mb-3">
+                            <div class="card-body">
+                                <div class="fa-5x">
+                                    <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+                                </div>
+                                <h4 class="card-title">{{ httpErrorMessage }}</h4>
                             </div>
-                            <h4 class="card-title">{{ httpErrorMessage }}</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div *ngSwitchCase="500">
-        <div class="container mt-3">
-            <div class="row">
-                <div class="col-md-12 text-center fade-in fast">
-                    <div class="card border-danger mb-3">
-                        <div class="card-body">
-                            <div class="fa-5x">
-                                <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+        <div *ngSwitchCase="500">
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-md-12 text-center fade-in fast">
+                        <div class="card border-danger mb-3">
+                            <div class="card-body">
+                                <div class="fa-5x">
+                                    <fa-icon [icon]="['fas', 'exclamation-triangle']"></fa-icon>
+                                </div>
+                                <h4 class="card-title">{{ httpErrorMessage }}</h4>
                             </div>
-                            <h4 class="card-title">{{ httpErrorMessage }}</h4>
                         </div>
                     </div>
                 </div>

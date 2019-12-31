@@ -10,15 +10,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item active"> -->
-        <!-- <a class="nav-link"
-           routerLink="/alumnos">Alumnos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" 
-           routerLink="/tablero">Tablero</a>
-      </li> -->
+    <ul class="navbar-nav mr-auto"> 
       <li class="nav-item" [routerLinkActive]="['active']">
         <a class="nav-link" 
            routerLink="/listado-productos">
@@ -44,13 +36,15 @@
         </a>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn btn-secondary">
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="true" (click)="switchTheme()">
-            <label class="custom-control-label cursor-hand" for="customSwitch1" id="customSwitch1label">Switch tema Claro</label>
-            <!-- <label class="custom-control-label" for="customSwitch1" id="customSwitch1label">Switch tema Claro <fa-icon [icon]="['fas', 'sun']"></fa-icon></label> -->
-          </div>
-        </button>
+        <a class="nav link">
+          <button type="button" class="btn btn-secondary">
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="true" (click)="switchTheme()">
+              <label class="custom-control-label cursor-hand" for="customSwitch1" id="customSwitch1label">Tema Obscuro 🌙</label>
+              <!-- <label class="custom-control-label" for="customSwitch1" id="customSwitch1label">Switch tema Claro <fa-icon [icon]="['fas', 'sun']"></fa-icon></label> -->
+            </div>
+          </button>
+        </a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0"

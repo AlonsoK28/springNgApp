@@ -29,10 +29,10 @@ export class NavbarComponent implements OnInit {
     const $label = this._document.getElementById("customSwitch1label");
     const url = "assets/bootstrap";
     if (!$switch.checked){
-      $label.innerHTML = "Switch tema Obscuro";
+      $label.innerHTML = "Tema Obscuro 🌙";
       $theme.setAttribute("href", `${url}/clear-bootstrap.min.css`);
     }else{
-      $label.innerHTML = "Switch tema Claro";
+      $label.innerHTML = "Tema Claro 🌞";
       $theme.setAttribute("href", `${url}/dark-bootstrap.min.css`);
     }
   }

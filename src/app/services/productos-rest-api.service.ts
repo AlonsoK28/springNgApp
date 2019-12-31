@@ -53,7 +53,7 @@ export class ProductosRestApiService {
 
     // HttpClient API insert() method => Insertar por Id
     createProducto(productoNuevo: ProductAPI) {
-        return this.http.post<ProductAPI>(this.apiURL + '/article/', JSON.stringify(productoNuevo), this.httpOptions)
+        return this.http.post<ProductAPI>(`${this.apiURL}/article/`, JSON.stringify(productoNuevo), this.httpOptions)
                     .pipe(catchError(this.handleError))
     }
 
@@ -71,28 +71,32 @@ export class ProductosRestApiService {
     handleError(error) {
         switch (error.status) {
             case httpErrorCode[0].code:
+                var httpError = httpErrorCode[0];
                 this.httpE = {
-                    httpStatusCode: httpErrorCode[0].code,
-                    httpErrorMessage: httpErrorCode[0].message
+                    httpStatusCode: httpError.code,
+                    httpErrorMessage: httpError.message
                 };
                 break;
                 return
             case httpErrorCode[500].code:
+                var httpError = httpErrorCode[500];
                 this.httpE = {
-                    httpStatusCode: httpErrorCode[500].code,
-                    httpErrorMessage: httpErrorCode[404].message
+                    httpStatusCode: httpError.code,
+                    httpErrorMessage: httpError.message
                 };
                 break;
             case httpErrorCode[404].code:
+                var httpError = httpErrorCode[404];
                 this.httpE = {
-                    httpStatusCode: httpErrorCode[404].code,
-                    httpErrorMessage: httpErrorCode[404].message
+                    httpStatusCode: httpError.code,
+                    httpErrorMessage: httpError.message
                 };
                 break;
             case httpErrorCode[409].code:
+                var httpError = httpErrorCode[409];
                 this.httpE = {
-                    httpStatusCode: httpErrorCode[409].code,
-                    httpErrorMessage: httpErrorCode[409].message
+                    httpStatusCode: httpError.code,
+                    httpErrorMessage: httpError.message
                 };
                 break;
         }

@@ -50,7 +50,9 @@ export class ProductoBusquedaComponent implements OnInit {
     let slugToWord = new SlugToWordPipe();
     return this.productosRestApi
       .getListadoProductosBusqueda(slugToWord.transform(this.termino))
-               .subscribe((data:ProductApp[]) => {
+               .subscribe(
+                // on next
+                (data:ProductApp[]) => {
                   this.Productos = data;
                   //sin resultados
                   this.loader = false;
@@ -58,11 +60,15 @@ export class ProductoBusquedaComponent implements OnInit {
                     this.sinResultados = true;
                     return;
                   }
-               }, (err: httpError) => {
+               },
+               // on error 
+               (err: httpError) => {
                    this.loader = false;
                    this.httpErrorCode = err.httpStatusCode;
                    this.httpErrorMessage = err.httpErrorMessage;
-               });
+               }, 
+               // on complete
+               () => console.info("complete: getListadoProductosBusqueda"));
   }
 
 }
